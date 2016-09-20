@@ -12,26 +12,25 @@ import javax.swing.JLabel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+
 
 
 public class ScoreBoard extends JFrame {
 	
 	/* declare variables and initialize them to something or "null" */
-	private final JPanel panelPeriod = null;
-	private final JPanel panelHome = null;  
-	private final JPanel panelAway = null;  
+//	private final JPanel panelPeriod = null;
+//	private final JPanel panelHome = null;  
+//	private final JPanel panelAway = null;  
 
-	private final JLabel home;
-	private final JLabel away;
-	private final JLabel period;
-	private final JTextField showPeriod;
-	private final JButton addPeriod;
-	private final JTextField hScores;
-	private final JTextField aScores;
-	private final JButton hAdd;
-	private final JButton aAdd;
-	private final JButton undo;
 	
+	JPanel panelPeriod, panelHome, panelAway;
+	JButton addPeriod, hAdd, aAdd, undo;
+	JTextField hScores, aScores, showPeriod;
+	JLabel home, away, period;
+	
+	GridBagConstraints gbc = new GridBagConstraints();
 	
 	public ScoreBoard() {
 		
@@ -41,20 +40,33 @@ public class ScoreBoard extends JFrame {
 		
 		// create panels. Note : use "camel case" for variable names
 		JPanel panelPeriod = new JPanel();
-		panelPeriod.setLayout(new BorderLayout());
+		panelPeriod.setLayout(new GridBagLayout());
+//		gbc.gridx = 0;
+//		gbc.gridy = 0;
 		
 		JPanel panelHome = new JPanel();
-		panelHome.setLayout(new BorderLayout());
-
+		panelHome.setLayout(new GridBagLayout());
+//		gbc.gridx = 1;
+//		gbc.gridy = 1;
+		
 		JPanel panelAway = new JPanel();
-		panelAway.setLayout(new BorderLayout());
-
+		panelAway.setLayout(new GridBagLayout());
+//		gbc.gridx = 2;
+//		gbc.gridy = 2;
 		/* create elements for each panel */
 		// for panelPeriod
 		period = new JLabel("Period");
+		gbc.gridx = 0;
+		gbc.gridy = 0;
 		showPeriod = new JTextField("1");
+		gbc.gridx = 1;
+		gbc.gridy = 1;
 		addPeriod = new JButton("Add");
+		gbc.gridx = 2;
+		gbc.gridy = 2;
 		undo = new JButton("Undo");
+		gbc.gridx = 3;
+		gbc.gridy = 3;
 
 		// for panelHome
 		home = new JLabel("Home");
@@ -68,44 +80,35 @@ public class ScoreBoard extends JFrame {
 
 		/* Add elements to respective panels */
 		// for panelPeriod
-		panelPeriod.add(period, BorderLayout.NORTH);
-		panelPeriod.add(showPeriod, BorderLayout.WEST);
-		panelPeriod.add(addPeriod, BorderLayout.EAST);
-		panelPeriod.add(undo, BorderLayout.SOUTH);
+		panelPeriod.add(period, gbc);
+		panelPeriod.add(showPeriod, gbc);
+		panelPeriod.add(addPeriod, gbc);
+		panelPeriod.add(undo, gbc);
 		
 		// for panelHome
-		panelHome.add(home, BorderLayout.NORTH);
-		panelHome.add(hScores, BorderLayout.WEST);
-		panelHome.add(hAdd, BorderLayout.EAST);
+		panelHome.add(home, gbc);
+		panelHome.add(hScores, gbc);
+		panelHome.add(hAdd, gbc);
 		
 		// for panelAway
-		panelAway.add(away, BorderLayout.NORTH);
-		panelAway.add(aScores, BorderLayout.WEST);
-		panelAway.add(aAdd, BorderLayout.EAST);
+		panelAway.add(away, gbc);
+		panelAway.add(aScores, gbc);
+		panelAway.add(aAdd, gbc);
 		
-		/* remove this. This class is ALREADY a JFrame. We DONT add frame onto a frame. This is wrong 
-		frame = new JFrame("Score Board");
-		frame.setResizable(false);
-		frame.setVisible(true);
-		frame.setSize(500, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(panelPeriod);
-		frame.add(panelHome);
-		frame.add(panelAway);
-		*/
+		
 
 		// Instead, add the panels directly into this class. This class is already a frame
-		setResizable(false);
-		setSize(500, 500);
+		setResizable(true);
+		setSize(600, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		setLayout(new BorderLayout());
-		add(panelPeriod, BorderLayout.NORTH);
-		add(panelHome, BorderLayout.WEST);
-		add(panelAway, BorderLayout.EAST);	
+		add(panelPeriod);
+		add(panelHome);
+		add(panelAway);	
 
 		// size the frame and display it
-		pack();
+//		pack();
 		setVisible(true);
 	}
 		
