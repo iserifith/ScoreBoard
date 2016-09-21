@@ -1,31 +1,27 @@
 package scoreBoard2;
 
 
-import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
-import java.util.Timer;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-
-import sun.font.FileFont;
-
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.EventQueue;
-import java.awt.Insets;
-import java.io.InputStream;
-import com.google.common.base.Stopwatch;
+import java.io.File;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 
 public class ScoreBoard extends JPanel {
+	
+	
 	
 	JButton addPeriod;
 	JButton hAdd;
@@ -34,22 +30,22 @@ public class ScoreBoard extends JPanel {
 	JTextField hScores, aScores, showPeriod;
 	JLabel home, away, period, space;
 	
+
+	
 	GridBagConstraints gbc = new GridBagConstraints();
 	
-//	String filename="digital-7.ttf";
-
-//	Font font = Font.createFont(Font.TRUETYPE_FONT, digital-7.); {
-//	font = font.deriveFont(Font.BOLD,28);
-//
-//	GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-//	ge.registerFont(font);
-//}
+	public static final String RES_PATH = "font";
+	public static final String FILENAME = "digital-7.ttf";
 	
+	//FONT
+	Font font = Font.createFont(Font.TRUETYPE_FONT, new File(FILENAME));
+	GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+	ge.registerFont=(new Font("font",Font.BOLD,20));
 
 	
 	@SuppressWarnings("static-access")
 	public ScoreBoard() {
-		
+		setBackground(Color.BLACK);
 		setLayout(new GridBagLayout());
 		
 		gbc.anchor = GridBagConstraints.PAGE_START;
@@ -199,15 +195,22 @@ public class ScoreBoard extends JPanel {
 			}
 	
 		});
-		undo.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-		});
+		
+		
+		
+		
+		
+		/*public void clear() {
+	        try {
+	            display.setText("");
+	            for(int i = 0; i < 4; i++)
+	                function[i] = false;
+	            for(int i = 0; i < 2; i++)
+	                temporary[i] = 0;
+	        } catch(NullPointerException e) {  
+	        }
+	    }*/
+		
 	}
 
 	
@@ -215,10 +218,10 @@ public class ScoreBoard extends JPanel {
 		ScoreBoard s = new ScoreBoard();
 		JFrame jf = new JFrame();
 		jf.add(s);
-		
 		jf.setTitle("Score Board");
 		jf.setSize(500,500);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jf.getContentPane().setBackground(Color.black);
 		jf.setVisible(true);
 		}
 }
