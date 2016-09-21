@@ -17,11 +17,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import java.lang.Exception;
 
 
 public class ScoreBoard extends JPanel {
-	
-	
 	
 	JButton addPeriod;
 	JButton hAdd;
@@ -29,22 +28,32 @@ public class ScoreBoard extends JPanel {
 	JButton undo;
 	JTextField hScores, aScores, showPeriod;
 	JLabel home, away, period, space;
-	
-
-	
 	GridBagConstraints gbc = new GridBagConstraints();
-	
 	public static final String RES_PATH = "font";
-	public static final String FILENAME = "digital-7.ttf";
+	public static final String FILENAME = "font/digital-7.ttf"; //file name must be in relative to the source code. In our case, our font is inside "font" folder
+	Font font = null;
+	Font digitalFont = null;
 	
-	//FONT
-	Font font = Font.createFont(Font.TRUETYPE_FONT, new File(FILENAME));
-	GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-	ge.registerFont=(new Font("font",Font.BOLD,20));
-
+	// remove. The following must be inside the constructor
+	// //FONT
+	// Font font = Font.createFont(Font.TRUETYPE_FONT, new File(FILENAME));
+	// GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+	// ge.registerFont(font);
 	
 	@SuppressWarnings("static-access")
 	public ScoreBoard() {
+
+		// Add try-and-catch clause for exception. See https://docs.oracle.com/javase/tutorial/essential/exceptions/
+		try {		
+			font = Font.createFont(Font.TRUETYPE_FONT, new File(FILENAME));
+			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			ge.registerFont(font);
+			digitalFont = new Font("digital-7", Font.PLAIN, 150); // font name must be the same as filename (without extension). Also changee the size to 150
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+
+
 		setBackground(Color.BLACK);
 		setLayout(new GridBagLayout());
 		
@@ -82,9 +91,10 @@ public class ScoreBoard extends JPanel {
 		
 //		//text fields
 		
-		hScores = new JTextField("00");
-		hScores.setPreferredSize( new Dimension( 50, 50 ) );
+		hScores = new JTextField("12");
+		hScores.setPreferredSize( new Dimension( 150, 150 ) ); //resize texfield
 		hScores.setFocusable(false);
+		hScores.setFont(digitalFont); // test imported font
 		gbc.gridx = 0;
 		gbc.gridy = 3;
 		gbc.gridwidth = 2;
@@ -92,7 +102,7 @@ public class ScoreBoard extends JPanel {
 		add(hScores , gbc);
 		
 		aScores = new JTextField("00");
-		aScores.setPreferredSize( new Dimension( 50, 50 ) );
+		aScores.setPreferredSize( new Dimension( 150, 150 ) );
 		aScores.setFocusable(false);
 		gbc.gridx = 6;
 		gbc.gridy = 3;
@@ -101,7 +111,7 @@ public class ScoreBoard extends JPanel {
 		add(aScores , gbc);
 		
 		showPeriod = new JTextField("00");
-		showPeriod.setPreferredSize( new Dimension( 50, 50 ) );
+		showPeriod.setPreferredSize( new Dimension( 150, 150 ) );
 		showPeriod.setFocusable(false);
 		gbc.gridx = 3;
 		gbc.gridy = 1;
@@ -219,10 +229,10 @@ public class ScoreBoard extends JPanel {
 		JFrame jf = new JFrame();
 		jf.add(s);
 		jf.setTitle("Score Board");
-		jf.setSize(500,500);
+		jf.setSize(3500,3500);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.getContentPane().setBackground(Color.black);
 		jf.setVisible(true);
-		}
+	}
 }
 
