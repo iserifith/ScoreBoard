@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +18,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.Timer;
+
+import scoreBoard2.Clock.Listener;
+
+import java.awt.event.*;
+import java.util.Calendar;
+
+
 import java.lang.Exception;
 
 
@@ -28,6 +37,10 @@ public class ScoreBoard extends JPanel {
 	JButton undo;
 	JTextField hScores, aScores, showPeriod;
 	JLabel home, away, period, space;
+	
+	
+	
+	
 	GridBagConstraints gbc = new GridBagConstraints();
 	public static final String RES_PATH = "src/font";
 	public static final String FILENAME = "src/font/digital-7.ttf"; //file name must be in relative to the source code. In our case, our font is inside "font" folder
@@ -52,13 +65,17 @@ public class ScoreBoard extends JPanel {
 
 
 		setBackground(Color.BLACK);
+		
+		
 		setLayout(new GridBagLayout());
 		
+		
 		gbc.anchor = GridBagConstraints.PAGE_START;
+		
 		//button
 		addPeriod = new JButton("Update Period");
 		gbc.gridx = 3;
-		gbc.gridy = 3;
+		gbc.gridy = 6;
 		gbc.gridwidth = 2;
 		gbc.insets = new Insets(3,3,3,3);	
 		
@@ -81,7 +98,7 @@ public class ScoreBoard extends JPanel {
 		
 		undo = new JButton("Undo");
 		gbc.gridx = 3;
-		gbc.gridy = 4;
+		gbc.gridy = 8;
 		gbc.gridwidth = 2;
 		gbc.insets = new Insets(3,3,3,3);
 		add(undo , gbc);
@@ -91,7 +108,7 @@ public class ScoreBoard extends JPanel {
 		hScores = new JTextField("00");
 		hScores.setPreferredSize( new Dimension( 150, 150 ) ); //resize texfield
 		hScores.setFocusable(false);
-//		hScores.setFont(font); // test imported font
+		hScores.setForeground(Color.RED);
 		gbc.gridx = 0;
 		gbc.gridy = 3;
 		gbc.gridwidth = 2;
@@ -104,6 +121,7 @@ public class ScoreBoard extends JPanel {
 		aScores.setPreferredSize( new Dimension( 150, 150 ) );
 		aScores.setFocusable(false);
 		aScores.setFont(font);
+		aScores.setForeground(Color.RED);
 		gbc.gridx = 6;
 		gbc.gridy = 3;
 		gbc.gridwidth = 2;
@@ -114,8 +132,9 @@ public class ScoreBoard extends JPanel {
 		showPeriod.setPreferredSize( new Dimension( 150, 150 ) );
 		showPeriod.setFocusable(false);
 		showPeriod.setFont(digitalFont);
+		showPeriod.setForeground(Color.RED);
 		gbc.gridx = 3;
-		gbc.gridy = 1;
+		gbc.gridy = 5;
 		gbc.gridwidth = 2;
 		gbc.insets = new Insets(3,3,3,3);
 		add(showPeriod , gbc);
@@ -143,9 +162,9 @@ public class ScoreBoard extends JPanel {
 		period.setForeground(Color.WHITE);
 		period.setFont (period.getFont ().deriveFont (45.0f));
 		gbc.gridx = 3;
-		gbc.gridy = 0;
+		gbc.gridy = 4;
 		gbc.gridwidth = 2;
-		gbc.insets = new Insets(3,3,3,3);	
+		gbc.insets = new Insets(0,0,0,0);	
 		add(period , gbc);
 		
 		
@@ -159,6 +178,7 @@ public class ScoreBoard extends JPanel {
 		} catch(Exception ex) {
 		    ex.printStackTrace();
 		}
+		
 		
 		
 		hAdd.addActionListener(new ActionListener(){ 
@@ -228,29 +248,11 @@ public class ScoreBoard extends JPanel {
 		
 		
 		
-		/*public void clear() {
-	        try {
-	            display.setText("");
-	            for(int i = 0; i < 4; i++)
-	                function[i] = false;
-	            for(int i = 0; i < 2; i++)
-	                temporary[i] = 0;
-	        } catch(NullPointerException e) {  
-	        }
-	    }*/
+		
 		
 	}
 
 	
-	public static void main(String[] args) {
-		ScoreBoard s = new ScoreBoard();
-		JFrame jf = new JFrame();
-		jf.add(s);
-		jf.setTitle("Score Board");
-		jf.setSize(3500,3500);
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jf.getContentPane().setBackground(Color.black);
-		jf.setVisible(true);
-	}
+	
 }
 
