@@ -29,16 +29,12 @@ public class ScoreBoard extends JPanel {
 	JTextField hScores, aScores, showPeriod;
 	JLabel home, away, period, space;
 	GridBagConstraints gbc = new GridBagConstraints();
-	public static final String RES_PATH = "font";
-	public static final String FILENAME = "font/digital-7.ttf"; //file name must be in relative to the source code. In our case, our font is inside "font" folder
+	public static final String RES_PATH = "src/font";
+	public static final String FILENAME = "src/font/digital-7.ttf"; //file name must be in relative to the source code. In our case, our font is inside "font" folder
 	Font font = null;
 	Font digitalFont = null;
 	
-	// remove. The following must be inside the constructor
-	// //FONT
-	// Font font = Font.createFont(Font.TRUETYPE_FONT, new File(FILENAME));
-	// GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-	// ge.registerFont(font);
+	
 	
 	@SuppressWarnings("static-access")
 	public ScoreBoard() {
@@ -52,6 +48,7 @@ public class ScoreBoard extends JPanel {
 		} catch (Exception e){
 			e.printStackTrace();
 		}
+
 
 
 		setBackground(Color.BLACK);
@@ -91,19 +88,22 @@ public class ScoreBoard extends JPanel {
 		
 //		//text fields
 		
-		hScores = new JTextField("12");
+		hScores = new JTextField("00");
 		hScores.setPreferredSize( new Dimension( 150, 150 ) ); //resize texfield
 		hScores.setFocusable(false);
-		hScores.setFont(digitalFont); // test imported font
+//		hScores.setFont(font); // test imported font
 		gbc.gridx = 0;
 		gbc.gridy = 3;
 		gbc.gridwidth = 2;
 		gbc.insets = new Insets(3,3,3,3);
 		add(hScores , gbc);
 		
+		
+		
 		aScores = new JTextField("00");
 		aScores.setPreferredSize( new Dimension( 150, 150 ) );
 		aScores.setFocusable(false);
+		aScores.setFont(font);
 		gbc.gridx = 6;
 		gbc.gridy = 3;
 		gbc.gridwidth = 2;
@@ -113,6 +113,7 @@ public class ScoreBoard extends JPanel {
 		showPeriod = new JTextField("00");
 		showPeriod.setPreferredSize( new Dimension( 150, 150 ) );
 		showPeriod.setFocusable(false);
+		showPeriod.setFont(digitalFont);
 		gbc.gridx = 3;
 		gbc.gridy = 1;
 		gbc.gridwidth = 2;
@@ -121,6 +122,8 @@ public class ScoreBoard extends JPanel {
 		
 //		//Labels
 		home= new JLabel("Home");
+		home.setForeground(Color.WHITE);
+		home.setFont (home.getFont ().deriveFont (45.0f));
 		gbc.gridx = 0;
 		gbc.gridy = 2;
 		gbc.gridwidth = 2;
@@ -128,6 +131,8 @@ public class ScoreBoard extends JPanel {
 		add(home , gbc);
 		
 		away = new JLabel("Away");
+		away.setForeground(Color.WHITE);
+		away.setFont (away.getFont ().deriveFont (45.0f));
 		gbc.gridx = 6;
 		gbc.gridy = 2;
 		gbc.gridwidth = 2;
@@ -135,12 +140,25 @@ public class ScoreBoard extends JPanel {
 		add(away , gbc);
 
 		period = new JLabel("Period");
+		period.setForeground(Color.WHITE);
+		period.setFont (period.getFont ().deriveFont (45.0f));
 		gbc.gridx = 3;
 		gbc.gridy = 0;
 		gbc.gridwidth = 2;
 		gbc.insets = new Insets(3,3,3,3);	
 		add(period , gbc);
 		
+		
+
+		try {
+			
+		    Font digitalFont = new Font("digital-7" ,Font.PLAIN,140);
+		    hScores.setFont(digitalFont);
+		    aScores.setFont(digitalFont);
+		    showPeriod.setFont(digitalFont);
+		} catch(Exception ex) {
+		    ex.printStackTrace();
+		}
 		
 		
 		hAdd.addActionListener(new ActionListener(){ 
