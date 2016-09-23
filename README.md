@@ -1,4 +1,4 @@
-{Basketball Score Board}
+# **Basketball Score Board**
 - One Paragraph of project description goes here
 - Add screenshots if possible (drag the image file to here)
 
