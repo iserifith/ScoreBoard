@@ -1,34 +1,50 @@
 package scoreBoard2;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class Driver {
 	
+	
+	
 	public static void main(String[] args) {
 		
-		Clock c = new Clock();
-		ShotClock shot = new ShotClock();
-		ScoreBoard s = new ScoreBoard();
-		JFrame jf = new JFrame();
-		jf.setLayout(new FlowLayout());
-		jf.add(c);
-		jf.add(shot);
-		jf.add(s);
+		GridBagConstraints gbc = new GridBagConstraints();
 		
-		jf.setTitle("Score Board");
-		jf.setSize(900,900);
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jf.getContentPane().setBackground(Color.GRAY);
-		jf.pack();
+		GameClock gameClock = new GameClock();
+		ShotClock shotClock = new ShotClock();
+		ScoreBoard scoreBoard = new ScoreBoard();
 		
-		jf.setVisible(true);
+		JFrame frameMain = new JFrame();
+		frameMain.setLayout(new GridBagLayout());
 		
+		JLabel lblGC = new JLabel("Game Clock");
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		frameMain.add(lblGC, gbc);
 		
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		frameMain.add(gameClock, gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		frameMain.add(shotClock, gbc);
+				
+		gbc.gridx = 0;
+		gbc.gridy = 3;
+		frameMain.add(scoreBoard, gbc);
+		
+		frameMain.setTitle("Score Board");
+		frameMain.setSize(900,900);
+		frameMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frameMain.getContentPane().setBackground(Color.GRAY);
+		frameMain.setVisible(true);	
 	}
 	
 }

@@ -57,14 +57,14 @@ public class ScoreBoard extends JPanel {
 			font = Font.createFont(Font.TRUETYPE_FONT, new File(FILENAME));
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			ge.registerFont(font);
-			digitalFont = new Font("digital-7", Font.PLAIN, 150); // font name must be the same as filename (without extension). Also changee the size to 150
+			digitalFont = new Font("digital-7", Font.PLAIN, 50); // font name must be the same as filename (without extension). Also changee the size to 150
 		} catch (Exception e){
 			e.printStackTrace();
 		}
 
 
 
-		setBackground(Color.GRAY);
+		setBackground(Color.RED);
 		
 		
 		setLayout(new GridBagLayout());
@@ -106,7 +106,7 @@ public class ScoreBoard extends JPanel {
 //		//text fields
 		
 		hScores = new JTextField("00");
-		hScores.setPreferredSize( new Dimension( 150, 150 ) ); //resize texfield
+		hScores.setPreferredSize( new Dimension( 50, 50 ) ); //resize texfield
 		hScores.setFocusable(false);
 		hScores.setForeground(Color.YELLOW);
 		hScores.setBackground(Color.BLACK);
@@ -120,7 +120,7 @@ public class ScoreBoard extends JPanel {
 		
 		
 		aScores = new JTextField("00");
-		aScores.setPreferredSize( new Dimension( 150, 150 ) );
+		aScores.setPreferredSize( new Dimension( 50, 50 ) );
 		aScores.setFocusable(false);
 		aScores.setFont(font);
 		aScores.setForeground(Color.YELLOW);
@@ -133,7 +133,7 @@ public class ScoreBoard extends JPanel {
 		add(aScores , gbc);
 		
 		showPeriod = new JTextField("00");
-		showPeriod.setPreferredSize( new Dimension( 150, 150 ) );
+		showPeriod.setPreferredSize( new Dimension( 50, 50 ) );
 		showPeriod.setFocusable(false);
 		showPeriod.setFont(digitalFont);
 		showPeriod.setForeground(Color.GREEN);
@@ -148,7 +148,7 @@ public class ScoreBoard extends JPanel {
 //		//Labels
 		home= new JLabel("Home");
 		home.setForeground(Color.WHITE);
-		home.setFont (home.getFont ().deriveFont (45.0f));
+		home.setFont (home.getFont ().deriveFont (20.0f));
 		gbc.gridx = 0;
 		gbc.gridy = 2;
 		gbc.gridwidth = 2;
@@ -157,7 +157,7 @@ public class ScoreBoard extends JPanel {
 		
 		away = new JLabel("Away");
 		away.setForeground(Color.WHITE);
-		away.setFont (away.getFont ().deriveFont (45.0f));
+		away.setFont (away.getFont ().deriveFont (20.0f));
 		gbc.gridx = 6;
 		gbc.gridy = 2;
 		gbc.gridwidth = 2;
@@ -166,7 +166,7 @@ public class ScoreBoard extends JPanel {
 
 		period = new JLabel("Period");
 		period.setForeground(Color.WHITE);
-		period.setFont (period.getFont ().deriveFont (45.0f));
+		period.setFont (period.getFont ().deriveFont (20.0f));
 		gbc.gridx = 3;
 		gbc.gridy = 4;
 		gbc.gridwidth = 2;
@@ -177,7 +177,7 @@ public class ScoreBoard extends JPanel {
 
 		try {
 			
-		    Font digitalFont = new Font("digital-7" ,Font.PLAIN,140);
+		    Font digitalFont = new Font("digital-7" ,Font.PLAIN,50);
 		    hScores.setFont(digitalFont);
 		    aScores.setFont(digitalFont);
 		    showPeriod.setFont(digitalFont);

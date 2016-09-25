@@ -2,6 +2,7 @@ package scoreBoard2;
 
 import javax.swing.*;
 
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -10,6 +11,9 @@ import java.util.TimerTask;
 
 public class ShotClock extends JPanel {
 	
+	final static boolean shouldFill = true;
+    final static boolean shouldWeightX = true;
+    final static boolean RIGHT_TO_LEFT = false;
 	public static final String RES_PATH = "src/font";
 	public static final String FILENAME = "src/font/digital-7.ttf"; //file name must be in relative to the source code. In our case, our font is inside "font" folder
 	Font font = null;
@@ -17,16 +21,29 @@ public class ShotClock extends JPanel {
 	Boolean runShotClock = false;
 	JPanel buttonP;
 	JPanel buttonS;
-	JTextField timeF;
-	JButton startB;
-	JButton stop;
-	JButton addC;
-	JButton subC;
+	JTextField txtSCSec;
+	JButton btnSCStart;
+	JButton btnSCStop;
+	JButton btnSCAdd;
+	JButton btnSCSub;
 	JLabel shotClock;
 	
+	GridBagConstraints gbc = new GridBagConstraints();
+
 	
 	public ShotClock(){
 		
+		if (RIGHT_TO_LEFT) {
+			setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+			}
+	
+		setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		if (shouldFill) {
+	    //natural height, maximum width
+	    gbc.fill = GridBagConstraints.HORIZONTAL;
+	    }
+
 		
 		RunEverySecond seconds = new RunEverySecond();
 		// instantiate a Timer object
@@ -35,9 +52,8 @@ public class ShotClock extends JPanel {
 	    // scheduling the task at fixed rate delay. See http://docs.oracle.com/javase/7/docs/api/java/util/Timer.html#scheduleAtFixedRate(java.util.TimerTask,%20long,%20long)
 	    timer.scheduleAtFixedRate(seconds,0,1000);
 	    
-	    	
-		setBackground(Color.GRAY);
-		setPreferredSize(new Dimension(300, 140));
+		setBackground(Color.RED);
+		
 		
 		try {		
 			font = Font.createFont(Font.TRUETYPE_FONT, new File(FILENAME));
@@ -47,19 +63,22 @@ public class ShotClock extends JPanel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		setLayout(new FlowLayout());
 		
 		shotClock = new JLabel("Shot Clock");		
-		timeF = new JTextField("00");
-		timeF.setFocusable(false);
-		timeF.setFont(font);
-		timeF.setPreferredSize(new Dimension(40, 40));
-		timeF.setForeground(Color.RED);
-		timeF.setBackground(Color.BLACK);
-		timeF.setHorizontalAlignment(SwingConstants.CENTER);
-		startB = new JButton("Start");
-		startB.addActionListener(new ActionListener(){
+		txtSCSec = new JTextField("10");
+		txtSCSec.setFocusable(false);
+		txtSCSec.setFont(font);
+		txtSCSec.setPreferredSize(new Dimension(100, 40));
+		txtSCSec.setForeground(Color.RED);
+		txtSCSec.setBackground(Color.BLACK);
+		txtSCSec.setHorizontalAlignment(SwingConstants.CENTER);
+		gbc.gridwidth = 1;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		btnSCStart = new JButton("Start");
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		btnSCStart.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -69,11 +88,12 @@ public class ShotClock extends JPanel {
 			
 		});
 		
-		startB.setPreferredSize(new Dimension(30, 50));
 		
 		
-		stop = new JButton("Stop");
-		stop.addActionListener(new ActionListener(){
+		btnSCStop = new JButton("Stop");
+		gbc.gridx = 2;
+		gbc.gridy = 0;
+		btnSCStop.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -83,46 +103,42 @@ public class ShotClock extends JPanel {
 			
 		});
 		
-		stop.setPreferredSize(new Dimension(40, 40));
 		
-		addC = new JButton("+");
-		addC.setPreferredSize(new Dimension(40, 40));
-		subC = new JButton("-");
-		subC.setPreferredSize(new Dimension(40, 40));
+		btnSCAdd = new JButton("+");
+		btnSCSub = new JButton("-");
 		
-		JPanel buttonS = new JPanel();
-		buttonS.add(startB);
-		buttonS.add(stop);
+		JPanel panelSC = new JPanel();
+		panelSC.add(txtSCSec);
+		panelSC.add(btnSCStart);
+		panelSC.add(btnSCStop);
+		panelSC.add(btnSCAdd);
+		panelSC.add(btnSCSub);
 		
-		JPanel buttonP = new JPanel();		
-		buttonP.add(addC);
-		buttonP.add(subC);
 		
 	
-		add(shotClock);
-		add(timeF);
-		add(buttonS);
-		add(buttonP);
+		
+		add(panelSC, gbc);
 		
 		try {
 			
 		    Font digitalFont = new Font("digital-7" ,Font.PLAIN,30);
-		    timeF.setFont(digitalFont);
+		    txtSCSec.setFont(digitalFont);
 		} catch(Exception ex) {
 		    ex.printStackTrace();
 		}
+		
 		
 	}
 	
 	public void updateClock(){
 		
-		String s = timeF.getText();
+		String s = txtSCSec.getText();
 		int i = Integer.parseInt(s) + 1;
 		
 		if (i > 4){
 			i = 0;
 		}
-		timeF.setText(""+i);
+		txtSCSec.setText(""+i);
 		
 		
 	}
