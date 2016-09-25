@@ -14,7 +14,8 @@ public class TimerDemo {
       Timer timer = new Timer();
          
       // scheduling the task at fixed rate delay. See http://docs.oracle.com/javase/7/docs/api/java/util/Timer.html#scheduleAtFixedRate(java.util.TimerTask,%20long,%20long)
-      timer.scheduleAtFixedRate(tasknew,0,1000);      
+      timer.scheduleAtFixedRate(tasknew,0,1000);    
+      
    } 
 }
 

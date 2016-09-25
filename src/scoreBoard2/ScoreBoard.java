@@ -18,9 +18,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
-import scoreBoard2.Clock.Listener;
 
 import java.awt.event.*;
 import java.util.Calendar;
@@ -64,7 +64,7 @@ public class ScoreBoard extends JPanel {
 
 
 
-		setBackground(Color.BLACK);
+		setBackground(Color.GRAY);
 		
 		
 		setLayout(new GridBagLayout());
@@ -108,7 +108,9 @@ public class ScoreBoard extends JPanel {
 		hScores = new JTextField("00");
 		hScores.setPreferredSize( new Dimension( 150, 150 ) ); //resize texfield
 		hScores.setFocusable(false);
-		hScores.setForeground(Color.RED);
+		hScores.setForeground(Color.YELLOW);
+		hScores.setBackground(Color.BLACK);
+		hScores.setHorizontalAlignment(SwingConstants.CENTER);
 		gbc.gridx = 0;
 		gbc.gridy = 3;
 		gbc.gridwidth = 2;
@@ -121,7 +123,9 @@ public class ScoreBoard extends JPanel {
 		aScores.setPreferredSize( new Dimension( 150, 150 ) );
 		aScores.setFocusable(false);
 		aScores.setFont(font);
-		aScores.setForeground(Color.RED);
+		aScores.setForeground(Color.YELLOW);
+		aScores.setBackground(Color.BLACK);
+		aScores.setHorizontalAlignment(SwingConstants.CENTER);
 		gbc.gridx = 6;
 		gbc.gridy = 3;
 		gbc.gridwidth = 2;
@@ -132,7 +136,9 @@ public class ScoreBoard extends JPanel {
 		showPeriod.setPreferredSize( new Dimension( 150, 150 ) );
 		showPeriod.setFocusable(false);
 		showPeriod.setFont(digitalFont);
-		showPeriod.setForeground(Color.RED);
+		showPeriod.setForeground(Color.GREEN);
+		showPeriod.setBackground(Color.BLACK);
+		showPeriod.setHorizontalAlignment(SwingConstants.CENTER);
 		gbc.gridx = 3;
 		gbc.gridy = 5;
 		gbc.gridwidth = 2;

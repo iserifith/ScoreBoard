@@ -8,36 +8,36 @@ import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Clock extends JPanel {
+public class ShotClock extends JPanel {
 	
 	public static final String RES_PATH = "src/font";
 	public static final String FILENAME = "src/font/digital-7.ttf"; //file name must be in relative to the source code. In our case, our font is inside "font" folder
 	Font font = null;
 	Font digitalFont = null;
-	Boolean runClock = false;
+	Boolean runShotClock = false;
 	JPanel buttonP;
 	JPanel buttonS;
 	JTextField timeF;
-	JTextField timeM;
-	JButton start;
+	JButton startB;
 	JButton stop;
 	JButton addC;
 	JButton subC;
+	JLabel shotClock;
 	
-	GridBagConstraints gbc = new GridBagConstraints();
 	
-	public Clock(){
+	public ShotClock(){
 		
 		
 		RunEverySecond seconds = new RunEverySecond();
 		// instantiate a Timer object
-	    Timer timer = new Timer();
+	    final Timer timer = new Timer();
 	         
 	    // scheduling the task at fixed rate delay. See http://docs.oracle.com/javase/7/docs/api/java/util/Timer.html#scheduleAtFixedRate(java.util.TimerTask,%20long,%20long)
 	    timer.scheduleAtFixedRate(seconds,0,1000);
 	    
+	    	
 		setBackground(Color.GRAY);
-		setPreferredSize(new Dimension(1500, 200));
+		setPreferredSize(new Dimension(300, 140));
 		
 		try {		
 			font = Font.createFont(Font.TRUETYPE_FONT, new File(FILENAME));
@@ -48,36 +48,28 @@ public class Clock extends JPanel {
 			e.printStackTrace();
 		}
 
-		setLayout(new GridBagLayout());
-
+		setLayout(new FlowLayout());
+		
+		shotClock = new JLabel("Shot Clock");		
 		timeF = new JTextField("00");
 		timeF.setFocusable(false);
 		timeF.setFont(font);
-		timeF.setPreferredSize(new Dimension(400, 40));
+		timeF.setPreferredSize(new Dimension(40, 40));
 		timeF.setForeground(Color.RED);
 		timeF.setBackground(Color.BLACK);
 		timeF.setHorizontalAlignment(SwingConstants.CENTER);
-		gbc.insets = new Insets(1, 1, 1, 1);
-		
-		timeM = new JTextField("00");
-		timeM.setFocusable(false);
-//		timeM.setFont(font);
-		timeM.setPreferredSize(new Dimension(100, 40));
-		timeM.setForeground(Color.RED);
-		timeM.setBackground(Color.BLACK);
-		
-		start = new JButton("Start");
-		start.addActionListener(new ActionListener(){
+		startB = new JButton("Start");
+		startB.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				runClock = true;
+				runShotClock = true;
 				
 			}
 			
 		});
 		
-		start.setPreferredSize(new Dimension(40, 40));
+		startB.setPreferredSize(new Dimension(30, 50));
 		
 		
 		stop = new JButton("Stop");
@@ -85,7 +77,7 @@ public class Clock extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				runClock = false;
+				runShotClock = false;
 				
 			}
 			
@@ -99,17 +91,15 @@ public class Clock extends JPanel {
 		subC.setPreferredSize(new Dimension(40, 40));
 		
 		JPanel buttonS = new JPanel();
-		
-		buttonS.add(start);
+		buttonS.add(startB);
 		buttonS.add(stop);
 		
-		JPanel buttonP = new JPanel();
-		
+		JPanel buttonP = new JPanel();		
 		buttonP.add(addC);
 		buttonP.add(subC);
 		
 	
-		add(timeM);
+		add(shotClock);
 		add(timeF);
 		add(buttonS);
 		add(buttonP);
@@ -118,7 +108,6 @@ public class Clock extends JPanel {
 			
 		    Font digitalFont = new Font("digital-7" ,Font.PLAIN,30);
 		    timeF.setFont(digitalFont);
-		    timeM.setFont(digitalFont);
 		} catch(Exception ex) {
 		    ex.printStackTrace();
 		}
@@ -127,29 +116,13 @@ public class Clock extends JPanel {
 	
 	public void updateClock(){
 		
-		String gcTextSec = timeF.getText();
-		int gcSeconds = Integer.parseInt(gcTextSec);
-		gcSeconds++;
+		String s = timeF.getText();
+		int i = Integer.parseInt(s) + 1;
 		
-		String gcTextMin = timeM.getText();
-		int gcMinutes = Integer.parseInt(gcTextMin);
-		
-		//int gcMinutes = +1;
-		
-		if (gcSeconds > 60){
-			gcSeconds = 0;
-			
-			//update gcMin
-
-			gcMinutes++;
+		if (i > 4){
+			i = 0;
 		}
-		if (gcMinutes > 12){
-			gcMinutes = 0;
-			runClock = false;
-		}
-		
-		timeM.setText(""+gcMinutes);
-		timeF.setText(""+gcSeconds);
+		timeF.setText(""+i);
 		
 		
 	}
@@ -160,13 +133,10 @@ public class Clock extends JPanel {
 
 		   public void run() {
 		      
-		     if (runClock){
+		     if (runShotClock){
 		    	 updateClock();
-		     }
-		   }
-	}
-	
-	
-
+		     }   
+		 }  
+	}	
 }
 
