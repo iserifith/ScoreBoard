@@ -1,7 +1,6 @@
-package scoreBoard2;
+package main;
 
 import javax.swing.*;
-
 
 import java.awt.*;
 import java.awt.event.*;
@@ -18,42 +17,39 @@ public class ShotClock extends JPanel {
 	public static final String FILENAME = "src/font/digital-7.ttf"; //file name must be in relative to the source code. In our case, our font is inside "font" folder
 	Font font = null;
 	Font digitalFont = null;
-	Boolean runShotClock = false;
-	JPanel buttonP;
-	JPanel buttonS;
+	Boolean runClock = false;
+	JPanel button;
+	JTextField txtSCTime;
 	JTextField txtSCSec;
+	JTextField txtSCMin;
 	JButton btnSCStart;
 	JButton btnSCStop;
 	JButton btnSCAdd;
 	JButton btnSCSub;
-	JLabel shotClock;
+	JTextField showPeriod;
+	JButton addPeriod;
 	
-	GridBagConstraints gbc = new GridBagConstraints();
-
 	
 	public ShotClock(){
-		
 		if (RIGHT_TO_LEFT) {
-			setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-			}
-	
-		setLayout(new GridBagLayout());
+				setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+	       }
+		
+		setLayout(new FlowLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		if (shouldFill) {
-	    //natural height, maximum width
-	    gbc.fill = GridBagConstraints.HORIZONTAL;
-	    }
+		    //natural height, maximum width
+		    gbc.fill = GridBagConstraints.HORIZONTAL;
+		    }
 
-		
 		RunEverySecond seconds = new RunEverySecond();
 		// instantiate a Timer object
-	    final Timer timer = new Timer();
+	    Timer timer = new Timer();
 	         
 	    // scheduling the task at fixed rate delay. See http://docs.oracle.com/javase/7/docs/api/java/util/Timer.html#scheduleAtFixedRate(java.util.TimerTask,%20long,%20long)
 	    timer.scheduleAtFixedRate(seconds,0,1000);
 	    
-		setBackground(Color.RED);
-		
+		setBackground(Color.BLUE);
 		
 		try {		
 			font = Font.createFont(Font.TRUETYPE_FONT, new File(FILENAME));
@@ -63,83 +59,155 @@ public class ShotClock extends JPanel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		shotClock = new JLabel("Shot Clock");		
-		txtSCSec = new JTextField("10");
-		txtSCSec.setFocusable(false);
-		txtSCSec.setFont(font);
-		txtSCSec.setPreferredSize(new Dimension(100, 40));
-		txtSCSec.setForeground(Color.RED);
-		txtSCSec.setBackground(Color.BLACK);
-		txtSCSec.setHorizontalAlignment(SwingConstants.CENTER);
-		gbc.gridwidth = 1;
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		btnSCStart = new JButton("Start");
-		gbc.gridx = 1;
-		gbc.gridy = 1;
-		btnSCStart.addActionListener(new ActionListener(){
 
+		JPanel panelSC = new JPanel();
+		 if (shouldWeightX) 
+		 {
+			 gbc.weightx = 0.5;
+		 }
+		panelSC.setLayout(new GridBagLayout());
+		 
+		txtSCTime = new JTextField("00");
+	    txtSCTime.setFocusable(false);
+	    txtSCTime.setPreferredSize(new Dimension(100, 100));
+	    txtSCTime.setForeground(Color.RED);
+	    txtSCTime.setBackground(Color.BLACK);
+	    txtSCTime.setHorizontalAlignment(SwingConstants.CENTER);	    
+	    gbc.gridx = 0;
+	    gbc.gridy = 0;
+	    gbc.gridy = 1;
+		panelSC.add(txtSCTime, gbc);
+
+
+		JPanel btnP = new JPanel();
+		 if (shouldWeightX) 
+		 {
+			 gbc.weightx = 0.5;
+		 }
+		btnP.setLayout(new GridBagLayout());
+		
+		btnSCStart = new JButton("Start");
+		btnSCStart.setPreferredSize(new Dimension(70,70));
+		gbc.gridx = 1;
+	    gbc.gridy = 0;
+		btnSCStart.addActionListener(new ActionListener(){
+			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				runShotClock = true;
+				runClock = true;
 				
 			}
 			
 		});
+		btnP.add(btnSCStart, gbc);
 		
 		
 		
-		btnSCStop = new JButton("Stop");
+		btnSCStop = new JButton("Stop");  
+		btnSCStop.setPreferredSize(new Dimension(70,70));
 		gbc.gridx = 2;
-		gbc.gridy = 0;
+	    gbc.gridy = 0;
+	    gbc.weightx = 1.0;
+
 		btnSCStop.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				runShotClock = false;
+				runClock = false;
 				
 			}
 			
 		});
+		btnP.add(btnSCStop, gbc);
 		
 		
 		btnSCAdd = new JButton("+");
+		btnSCAdd.setPreferredSize(new Dimension(70,30));
+		gbc.gridx = 1;
+	    gbc.gridy = 1;
+	    btnP.add(btnSCAdd, gbc);
+	        
 		btnSCSub = new JButton("-");
+		btnSCSub.setPreferredSize(new Dimension(70,30));
+		gbc.gridx = 2;
+	    gbc.gridy = 1;
+	    btnP.add(btnSCSub, gbc);
 		
-		JPanel panelSC = new JPanel();
-		panelSC.add(txtSCSec);
-		panelSC.add(btnSCStart);
-		panelSC.add(btnSCStop);
-		panelSC.add(btnSCAdd);
-		panelSC.add(btnSCSub);
+	    panelSC.add(btnP, gbc);
 		
 		
+		add(panelSC , gbc);
+		
+		JPanel periodPanel = new JPanel();
+		 if (shouldWeightX) 
+		 {
+			 gbc.weightx = 0.5;
+		 }
+		periodPanel.setLayout(new GridBagLayout());
+		
+		showPeriod = new JTextField("00");
+		showPeriod.setPreferredSize( new Dimension( 100, 100 ) );
+		showPeriod.setFocusable(false);
+		showPeriod.setFont(digitalFont);
+		showPeriod.setForeground(Color.GREEN);
+		showPeriod.setBackground(Color.BLACK);
+		showPeriod.setHorizontalAlignment(SwingConstants.CENTER);
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		
+		addPeriod = new JButton("Add");
+		addPeriod.setPreferredSize( new Dimension( 70, 100 ) );
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		addPeriod.addActionListener(new ActionListener(){ 
+			int total = 0;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String addScores = showPeriod.getText();
+				Integer addInt = Integer.parseInt(addScores);
+				int i = 1;
+				int score = 0;
+				score = 1;
+				
+				String scoreInString = addInt.toString(score);
+				showPeriod.setText(scoreInString);
+				
+				
+				 total += i;
+				 showPeriod.setText(""+total);
+				 	
+			}
 	
+		});
 		
-		add(panelSC, gbc);
+		periodPanel.add(showPeriod);
+		periodPanel.add(addPeriod);
+		add(periodPanel , gbc);
+		
+		
+		
 		
 		try {
 			
-		    Font digitalFont = new Font("digital-7" ,Font.PLAIN,30);
-		    txtSCSec.setFont(digitalFont);
+		    Font digitalFont = new Font("digital-7" ,Font.PLAIN,90);
+		    txtSCTime.setFont(digitalFont);
+		    showPeriod.setFont(digitalFont);
 		} catch(Exception ex) {
 		    ex.printStackTrace();
 		}
+		}
 		
-		
-	}
+
 	
 	public void updateClock(){
 		
-		String s = txtSCSec.getText();
+		String s = txtSCTime.getText();
 		int i = Integer.parseInt(s) + 1;
 		
 		if (i > 4){
 			i = 0;
 		}
-		txtSCSec.setText(""+i);
-		
+		txtSCTime.setText(""+i);
 		
 	}
 	
@@ -149,10 +217,13 @@ public class ShotClock extends JPanel {
 
 		   public void run() {
 		      
-		     if (runShotClock){
+		     if (runClock){
 		    	 updateClock();
-		     }   
-		 }  
-	}	
+		     }
+		   }
+	}
+	
+	
+
 }
 

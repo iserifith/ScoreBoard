@@ -1,4 +1,4 @@
-package scoreBoard2;
+package main;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -19,13 +19,13 @@ public class TestFrame {
 		ScoreBoard sc = new ScoreBoard();
 		GameClock clock = new GameClock();
 		ShotClock shot = new ShotClock();
-		
+		ShotClock sh = new ShotClock();
 		jf.setLayout(new GridBagLayout());
-		jf.add(clock);
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		
-		jf.add(shot);
+//		jf.add(clock);
+//		gbc.gridx = 0;
+//		gbc.gridy = 0;
+//		jf.add(shot);
+		jf.add(sh);
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 	
