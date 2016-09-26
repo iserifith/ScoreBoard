@@ -79,7 +79,7 @@ public class ScoreBoard extends JPanel {
 		gbc.gridwidth = 2;
 		gbc.insets = new Insets(3,3,3,3);	
 		
-		add(addPeriod , gbc);
+		
 		
 		hAdd = new JButton("Home team scores!");
 		
@@ -96,17 +96,11 @@ public class ScoreBoard extends JPanel {
 		gbc.insets = new Insets(3,3,3,3);
 		add(aAdd , gbc);
 		
-		undo = new JButton("Undo");
-		gbc.gridx = 3;
-		gbc.gridy = 8;
-		gbc.gridwidth = 2;
-		gbc.insets = new Insets(3,3,3,3);
-		add(undo , gbc);
 		
 //		//text fields
 		
 		hScores = new JTextField("00");
-		hScores.setPreferredSize( new Dimension( 50, 50 ) ); //resize texfield
+		hScores.setPreferredSize( new Dimension( 160, 160 ) ); //resize texfield
 		hScores.setFocusable(false);
 		hScores.setForeground(Color.YELLOW);
 		hScores.setBackground(Color.BLACK);
@@ -120,7 +114,7 @@ public class ScoreBoard extends JPanel {
 		
 		
 		aScores = new JTextField("00");
-		aScores.setPreferredSize( new Dimension( 50, 50 ) );
+		aScores.setPreferredSize( new Dimension( 160, 160 ) );
 		aScores.setFocusable(false);
 		aScores.setFont(font);
 		aScores.setForeground(Color.YELLOW);
@@ -131,19 +125,8 @@ public class ScoreBoard extends JPanel {
 		gbc.gridwidth = 2;
 		gbc.insets = new Insets(3,3,3,3);
 		add(aScores , gbc);
+
 		
-		showPeriod = new JTextField("00");
-		showPeriod.setPreferredSize( new Dimension( 50, 50 ) );
-		showPeriod.setFocusable(false);
-		showPeriod.setFont(digitalFont);
-		showPeriod.setForeground(Color.GREEN);
-		showPeriod.setBackground(Color.BLACK);
-		showPeriod.setHorizontalAlignment(SwingConstants.CENTER);
-		gbc.gridx = 3;
-		gbc.gridy = 5;
-		gbc.gridwidth = 2;
-		gbc.insets = new Insets(3,3,3,3);
-		add(showPeriod , gbc);
 		
 //		//Labels
 		home= new JLabel("Home");
@@ -164,23 +147,16 @@ public class ScoreBoard extends JPanel {
 		gbc.insets = new Insets(3,3,3,3);
 		add(away , gbc);
 
-		period = new JLabel("Period");
-		period.setForeground(Color.WHITE);
-		period.setFont (period.getFont ().deriveFont (20.0f));
-		gbc.gridx = 3;
-		gbc.gridy = 4;
-		gbc.gridwidth = 2;
-		gbc.insets = new Insets(0,0,0,0);	
-		add(period , gbc);
+	
+		
 		
 		
 
 		try {
 			
-		    Font digitalFont = new Font("digital-7" ,Font.PLAIN,50);
+		    Font digitalFont = new Font("digital-7" ,Font.PLAIN,120);
 		    hScores.setFont(digitalFont);
 		    aScores.setFont(digitalFont);
-		    showPeriod.setFont(digitalFont);
 		} catch(Exception ex) {
 		    ex.printStackTrace();
 		}
@@ -229,26 +205,7 @@ public class ScoreBoard extends JPanel {
 	
 		});
 		
-		addPeriod.addActionListener(new ActionListener(){ 
-			int total = 0;
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String addScores = showPeriod.getText();
-				Integer addInt = Integer.parseInt(addScores);
-				int i = 1;
-				int score = 0;
-				score = 1;
-				
-				String scoreInString = addInt.toString(score);
-				showPeriod.setText(scoreInString);
-				
-				
-				 total += i;
-				 showPeriod.setText(""+total);
-				 	
-			}
-	
-		});
+		
 		
 		
 		
