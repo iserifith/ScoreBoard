@@ -49,7 +49,7 @@ public class ShotClock extends JPanel {
 	    // scheduling the task at fixed rate delay. See http://docs.oracle.com/javase/7/docs/api/java/util/Timer.html#scheduleAtFixedRate(java.util.TimerTask,%20long,%20long)
 	    timer.scheduleAtFixedRate(seconds,0,1000);
 	    
-		setBackground(Color.BLUE);
+		setBackground(Color.GRAY);
 		
 		try {		
 			font = Font.createFont(Font.TRUETYPE_FONT, new File(FILENAME));
@@ -71,7 +71,7 @@ public class ShotClock extends JPanel {
 	    txtSCTime.setFocusable(false);
 	    txtSCTime.setPreferredSize(new Dimension(100, 100));
 	    txtSCTime.setForeground(Color.RED);
-	    txtSCTime.setBackground(Color.BLACK);
+	    txtSCTime.setBackground(Color.ORANGE);
 	    txtSCTime.setHorizontalAlignment(SwingConstants.CENTER);	    
 	    gbc.gridx = 0;
 	    gbc.gridy = 0;
@@ -123,6 +123,17 @@ public class ShotClock extends JPanel {
 		
 		btnSCAdd = new JButton("+");
 		btnSCAdd.setPreferredSize(new Dimension(70,30));
+		btnSCAdd.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				runClock = false;
+				modifyClock();
+				
+			}
+		
+		});
+		
 		gbc.gridx = 1;
 	    gbc.gridy = 1;
 	    btnP.add(btnSCAdd, gbc);
@@ -149,8 +160,8 @@ public class ShotClock extends JPanel {
 		showPeriod.setPreferredSize( new Dimension( 100, 100 ) );
 		showPeriod.setFocusable(false);
 		showPeriod.setFont(digitalFont);
-		showPeriod.setForeground(Color.GREEN);
-		showPeriod.setBackground(Color.BLACK);
+		showPeriod.setForeground(Color.RED);
+		showPeriod.setBackground(Color.GREEN);
 		showPeriod.setHorizontalAlignment(SwingConstants.CENTER);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
@@ -207,6 +218,16 @@ public class ShotClock extends JPanel {
 		if (i > 4){
 			i = 0;
 		}
+		txtSCTime.setText(""+i);
+		
+	}
+	
+	public void modifyClock(){
+		String s = txtSCTime.getText();
+		int i = Integer.parseInt(s) + 1;
+		
+		
+		
 		txtSCTime.setText(""+i);
 		
 	}

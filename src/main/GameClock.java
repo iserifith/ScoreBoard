@@ -47,9 +47,8 @@ public class GameClock extends JPanel {
 	    // scheduling the task at fixed rate delay. See http://docs.oracle.com/javase/7/docs/api/java/util/Timer.html#scheduleAtFixedRate(java.util.TimerTask,%20long,%20long)
 	    timer.scheduleAtFixedRate(seconds,0,1000);
 	    
-		setBackground(Color.BLUE);
-//		setSize(new Dimension(500, 500));
-//		setPreferredSize(new Dimension(1500, 1500));
+		setBackground(Color.GRAY);
+
 		
 		try {		
 			font = Font.createFont(Font.TRUETYPE_FONT, new File(FILENAME));
@@ -66,40 +65,18 @@ public class GameClock extends JPanel {
 			 gbc.weightx = 0.5;
 		 }
 		panelGC.setLayout(new GridBagLayout());
+		panelGC.setBackground(Color.GRAY);
 		 
 		txtGCSec = new JTextField("0");
-//		txtGCSec.setFocusable(false);
-//		txtGCSec.setFont(font);
-//		txtGCSec.setPreferredSize(new Dimension(100, 40));
-//		txtGCSec.setForeground(Color.RED);
-//		txtGCSec.setBackground(Color.BLACK);
-//		txtGCSec.setHorizontalAlignment(SwingConstants.CENTER);
-//		gbc.fill = GridBagConstraints.HORIZONTAL;
-//	    gbc.ipady = 40;      //make this component tall
-//	    gbc.weightx = 0.0;
-//	    gbc.gridwidth = 3;
-//	    gbc.gridx = 1;
-//	    gbc.gridy = 1;
 		
 		txtGCMin = new JTextField("0");
-//		txtGCMin.setFocusable(false);
-////		timeM.setFont(font);
-//		txtGCMin.setPreferredSize(new Dimension(100, 40));
-//		txtGCMin.setForeground(Color.RED);
-//		txtGCMin.setBackground(Color.BLACK);
-//		gbc.fill = GridBagConstraints.HORIZONTAL;
-//	    gbc.ipady = 40;      //make this component tall
-//	    gbc.weightx = 0.0;
-//	    gbc.gridwidth = 3;
-//	    gbc.gridx = 2;
-//	    gbc.gridy = 1;
-//	    
+    
 	    txtGCTime = new JTextField("0:0");
 	    txtGCTime.setFocusable(false);
 	    txtGCTime.setFont(font);
 	    txtGCTime.setPreferredSize(new Dimension(140, 140));
 	    txtGCTime.setForeground(Color.RED);
-	    txtGCTime.setBackground(Color.BLACK);
+	    txtGCTime.setBackground(Color.ORANGE);
 	    txtGCTime.setHorizontalAlignment(SwingConstants.CENTER);	    
 	    gbc.gridx = 0;
 	    gbc.gridy = 0;
@@ -114,7 +91,7 @@ public class GameClock extends JPanel {
 		btnP.setLayout(new GridBagLayout());
 		
 		btnGCStart = new JButton("Start");
-		btnGCStart.setPreferredSize(new Dimension(70,70));
+		btnGCStart.setPreferredSize(new Dimension(90,90));
 		gbc.gridx = 1;
 	    gbc.gridy = 0;
 		btnGCStart.addActionListener(new ActionListener(){
@@ -131,7 +108,7 @@ public class GameClock extends JPanel {
 		
 		
 		btnGCStop = new JButton("Stop");  
-		btnGCStop.setPreferredSize(new Dimension(70,70));
+		btnGCStop.setPreferredSize(new Dimension(90,90));
 		gbc.gridx = 2;
 	    gbc.gridy = 0;
 	    gbc.weightx = 1.0;
@@ -161,17 +138,6 @@ public class GameClock extends JPanel {
 	    btnP.add(btnGCSub, gbc);
 		
 	    panelGC.add(btnP, gbc);
-		
-//		gbc.fill = GridBagConstraints.HORIZONTAL;
-//		gbc.gridx = 6;
-//		gbc.gridy = 1;
-		
-//		panelGC.add(txtGCMin);
-//		panelGC.add(txtGCSec);
-//		panelGC.add(btnGCStart);
-//		panelGC.add(btnGCStop);
-//		panelGC.add(btnGCAdd);
-//		panelGC.add(btnGCSub);
 		
 
 		

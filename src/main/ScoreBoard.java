@@ -64,7 +64,7 @@ public class ScoreBoard extends JPanel {
 
 
 
-		setBackground(Color.RED);
+		setBackground(Color.GRAY);
 		
 		
 		setLayout(new GridBagLayout());
@@ -100,7 +100,7 @@ public class ScoreBoard extends JPanel {
 //		//text fields
 		
 		hScores = new JTextField("00");
-		hScores.setPreferredSize( new Dimension( 160, 160 ) ); //resize texfield
+		hScores.setPreferredSize( new Dimension( 300, 220 ) ); //resize texfield
 		hScores.setFocusable(false);
 		hScores.setForeground(Color.YELLOW);
 		hScores.setBackground(Color.BLACK);
@@ -114,7 +114,7 @@ public class ScoreBoard extends JPanel {
 		
 		
 		aScores = new JTextField("00");
-		aScores.setPreferredSize( new Dimension( 160, 160 ) );
+		aScores.setPreferredSize( new Dimension( 300, 220 ) );
 		aScores.setFocusable(false);
 		aScores.setFont(font);
 		aScores.setForeground(Color.YELLOW);
@@ -154,7 +154,7 @@ public class ScoreBoard extends JPanel {
 
 		try {
 			
-		    Font digitalFont = new Font("digital-7" ,Font.PLAIN,120);
+		    Font digitalFont = new Font("digital-7" ,Font.PLAIN,200);
 		    hScores.setFont(digitalFont);
 		    aScores.setFont(digitalFont);
 		} catch(Exception ex) {

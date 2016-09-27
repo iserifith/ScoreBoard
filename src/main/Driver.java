@@ -34,7 +34,7 @@ public class Driver {
 		gbc.gridy = 1;
 		frameMain.add(gameClock, gbc);
 		
-		JLabel lblSC = new JLabel("Shot Clock");
+		JLabel lblSC = new JLabel("Shot Clock           Period");
 		lblSC.setFont(new Font("Serif", Font.BOLD, 25));
 		gbc.gridx = 0;
 		gbc.gridy = 2;
@@ -43,9 +43,14 @@ public class Driver {
 		gbc.gridx = 0;
 		gbc.gridy = 3;
 		frameMain.add(shotClock, gbc);
-				
+		
+		JLabel gap = new JLabel("    ");
 		gbc.gridx = 0;
 		gbc.gridy = 4;
+		frameMain.add(gap, gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 5;
 		frameMain.add(scoreBoard, gbc);
 		
 		frameMain.setTitle("Score Board");
