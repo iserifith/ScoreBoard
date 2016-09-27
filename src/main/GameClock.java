@@ -72,7 +72,7 @@ public class GameClock extends JPanel {
 		txtGCMin = new JTextField("0");
     
 	    txtGCTime = new JTextField("0:0");
-	    txtGCTime.setFocusable(false);
+	    txtGCTime.setFocusable(true);
 	    txtGCTime.setFont(font);
 	    txtGCTime.setPreferredSize(new Dimension(140, 140));
 	    txtGCTime.setForeground(Color.RED);
@@ -127,12 +127,34 @@ public class GameClock extends JPanel {
 		
 		btnGCAdd = new JButton("+");
 		btnGCAdd.setPreferredSize(new Dimension(50,50));
+		btnGCAdd.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				runClock = false;
+				ModifyClockAdd();
+				
+			}
+		
+		});
+		
 		gbc.gridx = 1;
 	    gbc.gridy = 1;
 	    btnP.add(btnGCAdd, gbc);
 	        
 		btnGCSub = new JButton("-");
 		btnGCSub.setPreferredSize(new Dimension(50,50));
+		btnGCAdd.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				runClock = false;
+				ModifyClockSub();
+				
+			}
+		
+		});
+		
 		gbc.gridx = 2;
 	    gbc.gridy = 1;
 	    btnP.add(btnGCSub, gbc);
@@ -186,6 +208,25 @@ public class GameClock extends JPanel {
 		
 	}
 	
+	public void ModifyClockAdd(){
+		String s = txtGCSec.getText();
+		int i = Integer.parseInt(s) + 1;
+		
+		txtGCSec.setText(""+i);
+		txtGCTime.setText(txtGCMin+":"+txtGCSec);
+		
+	}
+	
+	public void ModifyClockSub(){
+		String s = txtGCSec.getText();
+		int i = Integer.parseInt(s) - 1;
+		
+		
+		
+		txtGCSec.setText(""+i);
+		
+		
+	}
 	
 	
 	class RunEverySecond extends TimerTask {
@@ -197,6 +238,8 @@ public class GameClock extends JPanel {
 		     }
 		   }
 	}
+	
+	
 	
 	
 
