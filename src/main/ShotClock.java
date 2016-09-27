@@ -128,7 +128,7 @@ public class ShotClock extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				runClock = false;
-				modifyClock();
+				modifyClockAdd();
 				
 			}
 		
@@ -140,6 +140,16 @@ public class ShotClock extends JPanel {
 	        
 		btnSCSub = new JButton("-");
 		btnSCSub.setPreferredSize(new Dimension(70,30));
+		btnSCSub.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				runClock = false;
+				modifyClockSub();
+				
+			}
+		
+		});
 		gbc.gridx = 2;
 	    gbc.gridy = 1;
 	    btnP.add(btnSCSub, gbc);
@@ -215,24 +225,26 @@ public class ShotClock extends JPanel {
 		String s = txtSCTime.getText();
 		int i = Integer.parseInt(s) + 1;
 		
-		if (i > 4){
+		if (i > 12){
 			i = 0;
 		}
 		txtSCTime.setText(""+i);
 		
 	}
 	
-	public void modifyClock(){
+	public void modifyClockAdd(){
 		String s = txtSCTime.getText();
 		int i = Integer.parseInt(s) + 1;
-		
-		
-		
+			
 		txtSCTime.setText(""+i);
-		
 	}
 	
-	
+	public void modifyClockSub(){
+		String s = txtSCTime.getText();
+		int i = Integer.parseInt(s) - 1;
+		
+		txtSCTime.setText(""+i);
+	}
 	
 	class RunEverySecond extends TimerTask {
 
