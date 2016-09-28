@@ -7,30 +7,24 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.Timer;
-
-
-import java.awt.event.*;
-import java.util.Calendar;
-
-
-import java.lang.Exception;
 
 
 public class ScoreBoard extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JButton addPeriod;
 	JButton hAdd;
 	JButton aAdd;
@@ -42,8 +36,8 @@ public class ScoreBoard extends JPanel {
 	
 	
 	GridBagConstraints gbc = new GridBagConstraints();
-	public static final String RES_PATH = "src/font";
-	public static final String FILENAME = "src/font/digital-7.ttf"; //file name must be in relative to the source code. In our case, our font is inside "font" folder
+	public static final String RES_PATH = "/home/seraf/serah-workspace/Score Board/src/main/font";
+	public static final String FILENAME = "/home/seraf/serah-workspace/Score Board/src/main/font/digital-7.ttf"; 
 	Font font = null;
 	Font digitalFont = null;
 	

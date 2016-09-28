@@ -1,15 +1,18 @@
 # **Basketball Score Board**
-- One Paragraph of project description goes here
+- Can be used in basketball matches.
 - Add screenshots if possible (drag the image file to here)
 
 Prerequisities
-- What things you need to install/run the software
+- Java runtime need to be installed to run.
 
 Compilation
-- A step by step on how to compile the source code
+- Type in the following command in terminal line to compile the program.
+    make sure you are in src directory
+
+	javac main/Driver.java
 
 Run
-- A step by step on how to run the application
+- And to run the program, type in java main.Driver via terminal line.
 
 Version
 1.0

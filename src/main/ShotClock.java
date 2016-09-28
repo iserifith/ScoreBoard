@@ -4,17 +4,24 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class ShotClock extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	final static boolean shouldFill = true;
     final static boolean shouldWeightX = true;
     final static boolean RIGHT_TO_LEFT = false;
-	public static final String RES_PATH = "src/font";
-	public static final String FILENAME = "src/font/digital-7.ttf"; //file name must be in relative to the source code. In our case, our font is inside "font" folder
+	public static final String RES_PATH = "/home/seraf/serah-workspace/Score Board/src/main/font";
+	public static final String FILENAME = "/home/seraf/serah-workspace/Score Board/src/main/font/digital-7.ttf"; 
 	Font font = null;
 	Font digitalFont = null;
 	Boolean runClock = false;
