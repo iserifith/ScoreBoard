@@ -2,6 +2,7 @@ package main;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -52,9 +53,10 @@ public class Driver {
 		gbc.gridx = 0;
 		gbc.gridy = 5;
 		frameMain.add(scoreBoard, gbc);
-		
+		frameMain.setResizable(false);
 		frameMain.setTitle("Score Board");
-		frameMain.setSize(1200,900);
+		frameMain.setSize(700,700);
+
 		frameMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameMain.getContentPane().setBackground(Color.GRAY);
 		frameMain.setVisible(true);	
