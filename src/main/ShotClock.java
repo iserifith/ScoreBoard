@@ -28,6 +28,7 @@ public class ShotClock extends JPanel {
 	JButton btnSCSub;
 	JTextField showPeriod;
 	JButton addPeriod;
+	JButton subPeriod;
 	
 	
 	public ShotClock(){
@@ -87,7 +88,8 @@ public class ShotClock extends JPanel {
 		btnP.setLayout(new GridBagLayout());
 		
 		btnSCStart = new JButton("Start");
-		btnSCStart.setPreferredSize(new Dimension(70,70));
+		btnSCStart.setMargin(new Insets(0,0,0,0));
+		btnSCStart.setPreferredSize(new Dimension(70,50));
 		gbc.gridx = 1;
 	    gbc.gridy = 0;
 		btnSCStart.addActionListener(new ActionListener(){
@@ -103,8 +105,9 @@ public class ShotClock extends JPanel {
 		
 		
 		
-		btnSCStop = new JButton("Stop");  
-		btnSCStop.setPreferredSize(new Dimension(70,70));
+		btnSCStop = new JButton("Stop");
+		btnSCStop.setMargin(new Insets(0,0,0,0));
+		btnSCStop.setPreferredSize(new Dimension(70,50));
 		gbc.gridx = 2;
 	    gbc.gridy = 0;
 	    gbc.weightx = 1.0;
@@ -121,8 +124,9 @@ public class ShotClock extends JPanel {
 		btnP.add(btnSCStop, gbc);
 		
 		
-		btnSCAdd = new JButton("+");
-		btnSCAdd.setPreferredSize(new Dimension(70,30));
+		btnSCAdd = new JButton("Add Sec");
+		btnSCAdd.setMargin(new Insets(0,0,0,0));
+		btnSCAdd.setPreferredSize(new Dimension(70,50));
 		btnSCAdd.addActionListener(new ActionListener(){
 
 			@Override
@@ -138,8 +142,9 @@ public class ShotClock extends JPanel {
 	    gbc.gridy = 1;
 	    btnP.add(btnSCAdd, gbc);
 	        
-		btnSCSub = new JButton("-");
-		btnSCSub.setPreferredSize(new Dimension(70,30));
+		btnSCSub = new JButton("Sub Sec");
+		btnSCSub.setMargin(new Insets(0,0,0,0));
+		btnSCSub.setPreferredSize(new Dimension(70,50));
 		btnSCSub.addActionListener(new ActionListener(){
 
 			@Override
@@ -175,37 +180,67 @@ public class ShotClock extends JPanel {
 		showPeriod.setHorizontalAlignment(SwingConstants.CENTER);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
+		periodPanel.add(showPeriod, gbc);
 		
-		addPeriod = new JButton("Add");
-		addPeriod.setPreferredSize( new Dimension( 70, 100 ) );
+		JPanel periodButton = new JPanel();
+		 if (shouldWeightX) 
+		 {
+			 gbc.weightx = 0.5;
+		 }
+		periodButton.setLayout(new GridBagLayout());
+		
 		gbc.gridx = 1;
 		gbc.gridy = 0;
+		
+		
+		addPeriod = new JButton("Add");
+		addPeriod.setMargin(new Insets(0,0,0,0));
+		addPeriod.setPreferredSize( new Dimension(70,100) );
 		addPeriod.addActionListener(new ActionListener(){ 
-			int total = 0;
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String addScores = showPeriod.getText();
-				Integer addInt = Integer.parseInt(addScores);
-				int i = 1;
-				int score = 0;
-				score = 1;
-				
-				String scoreInString = addInt.toString(score);
-				showPeriod.setText(scoreInString);
-				
-				
-				 total += i;
-				 showPeriod.setText(""+total);
+				String s = showPeriod.getText();
+				int i = Integer.parseInt(s) + 1;
+					
+				showPeriod.setText(""+i);
 				 	
 			}
 	
 		});
+		gbc.gridx = 0;
+		gbc.gridy = 0;
 		
-		periodPanel.add(showPeriod);
-		periodPanel.add(addPeriod);
-		add(periodPanel , gbc);
+		periodButton.add(addPeriod, gbc);
+		
+		subPeriod = new JButton("Sub");
+		subPeriod.setMargin(new Insets(0,0,0,0));
+		subPeriod.setPreferredSize( new Dimension(70,100) );
+		subPeriod.addActionListener(new ActionListener(){ 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+//				String s = showPeriod.getText();
+//				int i = Integer.parseInt(s) - 1;
+//				
+//				showPeriod.setText(""+i);
+				
+				String s = showPeriod.getText();
+				int i = Integer.parseInt(s) - 1;
+					
+				showPeriod.setText(""+i);
+				 	
+			}
+	
+		});
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		periodButton.add(subPeriod, gbc);
 		
 		
+		
+		periodPanel.add(periodButton, gbc);
+		
+		add(periodPanel, gbc);
 		
 		
 		try {

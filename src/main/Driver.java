@@ -54,7 +54,7 @@ public class Driver {
 		frameMain.add(scoreBoard, gbc);
 		
 		frameMain.setTitle("Score Board");
-		frameMain.setSize(900,900);
+		frameMain.setSize(1200,900);
 		frameMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameMain.getContentPane().setBackground(Color.GRAY);
 		frameMain.setVisible(true);	

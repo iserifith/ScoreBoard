@@ -21,13 +21,13 @@ public class TestFrame {
 		ShotClock shot = new ShotClock();
 		ShotClock sh = new ShotClock();
 		jf.setLayout(new GridBagLayout());
-//		jf.add(clock);
+		jf.add(clock);
 //		gbc.gridx = 0;
 //		gbc.gridy = 0;
-//		jf.add(shot);
-		jf.add(sh);
-		gbc.gridx = 0;
-		gbc.gridy = 1;
+		jf.add(shot);
+//		jf.add(sh);
+//		gbc.gridx = 0;
+//		gbc.gridy = 1;
 	
 		jf.setTitle("Score Board");
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

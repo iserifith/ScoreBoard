@@ -1,12 +1,23 @@
 package main;
 
-import javax.swing.*;
-
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.ComponentOrientation;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class GameClock extends JPanel {
 	
@@ -24,8 +35,10 @@ public class GameClock extends JPanel {
 	JTextField txtGCMin;
 	JButton btnGCStart;
 	JButton btnGCStop;
-	JButton btnGCAdd;
-	JButton btnGCSub;
+	JButton btnGCAddMin;
+	JButton btnGCSubMin;
+	JButton btnGCAddSec;
+	JButton btnGCSubSec;
 	
 	
 	public GameClock(){
@@ -74,7 +87,7 @@ public class GameClock extends JPanel {
 	    txtGCTime = new JTextField("0:0");
 	    txtGCTime.setFocusable(true);
 	    txtGCTime.setFont(font);
-	    txtGCTime.setPreferredSize(new Dimension(140, 140));
+	    txtGCTime.setPreferredSize(new Dimension(150, 150));
 	    txtGCTime.setForeground(Color.RED);
 	    txtGCTime.setBackground(Color.ORANGE);
 	    txtGCTime.setHorizontalAlignment(SwingConstants.CENTER);	    
@@ -82,6 +95,8 @@ public class GameClock extends JPanel {
 	    gbc.gridy = 0;
 	    gbc.gridy = 1;
 		panelGC.add(txtGCTime, gbc);
+		
+		
 
 		JPanel btnP = new JPanel();
 		 if (shouldWeightX) 
@@ -91,7 +106,8 @@ public class GameClock extends JPanel {
 		btnP.setLayout(new GridBagLayout());
 		
 		btnGCStart = new JButton("Start");
-		btnGCStart.setPreferredSize(new Dimension(90,90));
+		btnGCStart.setMargin(new Insets(0,0,0,0));
+		btnGCStart.setPreferredSize(new Dimension(80,50));
 		gbc.gridx = 1;
 	    gbc.gridy = 0;
 		btnGCStart.addActionListener(new ActionListener(){
@@ -107,8 +123,9 @@ public class GameClock extends JPanel {
 		
 		
 		
-		btnGCStop = new JButton("Stop");  
-		btnGCStop.setPreferredSize(new Dimension(90,90));
+		btnGCStop = new JButton("Stop"); 
+		btnGCStop.setMargin(new Insets(0,0,0,0));
+		btnGCStop.setPreferredSize(new Dimension(80,50));
 		gbc.gridx = 2;
 	    gbc.gridy = 0;
 	    gbc.weightx = 1.0;
@@ -125,14 +142,15 @@ public class GameClock extends JPanel {
 		btnP.add(btnGCStop, gbc);
 		
 		
-		btnGCAdd = new JButton("+");
-		btnGCAdd.setPreferredSize(new Dimension(50,50));
-		btnGCAdd.addActionListener(new ActionListener(){
+		btnGCAddMin = new JButton("Add Min");
+		btnGCAddMin.setMargin(new Insets(0,0,0,0));
+		btnGCAddMin.setPreferredSize(new Dimension(80,50));
+		btnGCAddMin.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				runClock = false;
-				ModifyClockAdd();
+				ModifyClockAddMin();
 				
 			}
 		
@@ -140,16 +158,17 @@ public class GameClock extends JPanel {
 		
 		gbc.gridx = 1;
 	    gbc.gridy = 1;
-	    btnP.add(btnGCAdd, gbc);
+	    btnP.add(btnGCAddMin, gbc);
 	        
-		btnGCSub = new JButton("-");
-		btnGCSub.setPreferredSize(new Dimension(50,50));
-		btnGCAdd.addActionListener(new ActionListener(){
+		btnGCSubMin = new JButton("Sub Min");
+		btnGCSubMin.setMargin(new Insets(0,0,0,0));
+		btnGCSubMin.setPreferredSize(new Dimension(80,50));
+		btnGCSubMin.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				runClock = false;
-				ModifyClockSub();
+				ModifyClockSubMin();
 				
 			}
 		
@@ -157,14 +176,52 @@ public class GameClock extends JPanel {
 		
 		gbc.gridx = 2;
 	    gbc.gridy = 1;
-	    btnP.add(btnGCSub, gbc);
+	    btnP.add(btnGCSubMin, gbc);
 		
 	    panelGC.add(btnP, gbc);
 		
+//////////////////////////////////////////////////////
+	    
+		btnGCAddSec = new JButton("Add Sec");
+		btnGCAddSec.setMargin(new Insets(0,0,0,0));
+		btnGCAddSec.setPreferredSize(new Dimension(80,50));
+		btnGCAddSec.addActionListener(new ActionListener(){
 
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				runClock = false;
+				ModifyClockAddSec();
+				
+			}
+		
+		});
+		
+		gbc.gridx = 1;
+	    gbc.gridy = 2;
+	    btnP.add(btnGCAddSec, gbc);
+	        
+		btnGCSubSec = new JButton("Sub Sec");
+		btnGCSubSec.setMargin(new Insets(0,0,0,0));
+		btnGCSubSec.setPreferredSize(new Dimension(80,50));
+		btnGCSubSec.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				runClock = false;
+				ModifyClockSubSec();
+				
+			}
+		
+		});
+		
+		gbc.gridx = 2;
+	    gbc.gridy = 2;
+	    btnP.add(btnGCSubSec, gbc);
 		
 		
 		add(panelGC , gbc);
+		
+		
 		
 		
 		try {
@@ -175,8 +232,16 @@ public class GameClock extends JPanel {
 		    txtGCTime.setFont(digitalFont);
 		} catch(Exception ex) {
 		    ex.printStackTrace();
+	
 		}
-		}
+	
+	
+	
+	}
+	
+	
+	
+		
 		
 
 	
@@ -205,26 +270,48 @@ public class GameClock extends JPanel {
 		txtGCMin.setText(""+gcMinutes);
 		txtGCSec.setText(""+gcSeconds);
 		txtGCTime.setText(gcTextMin+":"+gcTextSec);
+
 		
 	}
 	
-	public void ModifyClockAdd(){
+	
+	public void ModifyClockAddSec(){
 		String s = txtGCSec.getText();
 		int i = Integer.parseInt(s) + 1;
 		
 		txtGCSec.setText(""+i);
-		txtGCTime.setText(txtGCMin+":"+txtGCSec);
+		txtGCTime.setText(txtGCMin.getText()  +":"+txtGCSec.getText());
 		
 	}
 	
-	public void ModifyClockSub(){
+	public void ModifyClockSubSec(){
 		String s = txtGCSec.getText();
 		int i = Integer.parseInt(s) - 1;
-		
-		
-		
+	
 		txtGCSec.setText(""+i);
+		txtGCTime.setText(txtGCMin.getText()  +":"+txtGCSec.getText());
+
 		
+	}
+	
+	//////
+	
+	public void ModifyClockAddMin(){
+		String s = txtGCMin.getText();
+		int i = Integer.parseInt(s) + 1;
+		
+		txtGCMin.setText(""+i);
+		
+		txtGCTime.setText(txtGCMin.getText()  +":"+txtGCSec.getText());
+	}
+	
+	public void ModifyClockSubMin(){
+		String s = txtGCMin.getText();
+		int i = Integer.parseInt(s) - 1;
+	
+		txtGCMin.setText(""+i);
+		txtGCTime.setText(txtGCMin.getText()  +":"+txtGCSec.getText());
+
 		
 	}
 	
@@ -237,6 +324,7 @@ public class GameClock extends JPanel {
 		    	 updateClock();
 		     }
 		   }
+		   
 	}
 	
 	
